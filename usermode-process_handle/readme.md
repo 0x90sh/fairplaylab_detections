@@ -29,14 +29,15 @@ This project demonstrates a simple anti-cheat detection vector based on process 
    cl /EHsc cheat_hijack_handle.cpp /link /SUBSYSTEM:CONSOLE
     ```
 
-* `GameProcessMonitor_WithWhitelist.cpp` requires `ntdll.lib`.
+* `anticheat.cpp` requires `ntdll.lib`.
 * The other two programs use standard Win32 APIs and need no extra libraries.
 
 3. **Run the demo**
 
-   * First, launch **GameProcessMonitor\_WithWhitelist.exe**. It will print its PID and the list of whitelisted PIDs.
-   * In a separate console, run `CheatOpenHandle.exe <GamePID>`. The monitor will close that handle and log a red warning.
-   * Finally, run `CheatHijackHandle_Whitelist.exe`. It will duplicate a handle from a whitelisted PID, and the monitor will log it in green (trusted), allowing it to remain open.
+   * First, launch **anticheat.exe**. It will print its PID and the list of whitelisted PIDs.
+   * In a separate console, run `cheat_open_handle.exe <GamePID>`. The monitor will close that handle and log a red warning.
+   * Finally, run `cheat_hijack_handle.exe`. It will duplicate a handle from a whitelisted PID, and the monitor will log it in green (trusted), allowing it to remain open.
+   * Whitelist is not implemented... obviously a handle with configured PID must exist.
 
 ---
 
@@ -44,11 +45,3 @@ This project demonstrates a simple anti-cheat detection vector based on process 
 
 * User‐mode process‐handle detection vector documentation:
   [https://bible.fairplaylab.org/detection-vectors/usermode-process\_handle](https://bible.fairplaylab.org/detection-vectors/usermode-process_handle)
-
----
-
-## Notes
-
-* Adjust `WHITELISTED_PIDS` in **GameProcessMonitor\_WithWhitelist.cpp** to match your test environment.
-* In **CheatHijackHandle\_Whitelist**, set `WHITELISTED_PID`, `KNOWN_HANDLE_VALUE`, and `TARGET_GAME_PID` according to the monitor’s whitelist and valid handle values.
-* These examples are for demonstration only and do not include full error handling or production-grade robustness.
