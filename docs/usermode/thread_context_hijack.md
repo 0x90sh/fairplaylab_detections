@@ -2,7 +2,7 @@
 description: Thread context hijack detection from usermode.
 ---
 
-# usermode:thread\_context\_hijack
+# thread\_context\_hijack
 
 **Cheat**
 

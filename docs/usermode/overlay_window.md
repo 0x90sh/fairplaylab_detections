@@ -2,7 +2,7 @@
 description: Cheat overlay detection and bypass.
 ---
 
-# usermode:overlay\_window
+# overlay\_window
 
 **Cheat**
 

@@ -2,7 +2,7 @@
 description: Code injection and dll injection detection from usermode.
 ---
 
-# usermode:code\_injection
+# code\_injection
 
 **Cheat**
 

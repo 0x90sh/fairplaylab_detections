@@ -2,7 +2,7 @@
 description: Process handle detection and bypass.
 ---
 
-# usermode:process\_handle
+# process\_handle
 
 **Cheat**
 
