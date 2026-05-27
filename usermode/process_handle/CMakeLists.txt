@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(usermode_process_handle LANGUAGES CXX)
+
+add_executable(fpl_process_handle_anticheat src/anticheat.cpp)
+target_compile_features(fpl_process_handle_anticheat PRIVATE cxx_std_17)
+target_compile_definitions(fpl_process_handle_anticheat PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_process_handle_anticheat PROPERTIES OUTPUT_NAME anticheat)
+
+add_executable(fpl_process_handle_cheat_open src/cheat_open_handle.cpp)
+target_compile_features(fpl_process_handle_cheat_open PRIVATE cxx_std_17)
+target_compile_definitions(fpl_process_handle_cheat_open PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_process_handle_cheat_open PROPERTIES OUTPUT_NAME cheat_open_handle)
+
+add_executable(fpl_process_handle_cheat_hijack src/cheat_hijack_handle.cpp)
+target_compile_features(fpl_process_handle_cheat_hijack PRIVATE cxx_std_17)
+target_compile_definitions(fpl_process_handle_cheat_hijack PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_process_handle_cheat_hijack PROPERTIES OUTPUT_NAME cheat_hijack_handle)

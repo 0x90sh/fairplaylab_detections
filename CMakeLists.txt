@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(fairplaylab_detections LANGUAGES CXX)
+
+add_subdirectory(usermode/external_read_write_process_memory)
+add_subdirectory(usermode/code_injection)
+add_subdirectory(usermode/internal_read_write_memory)
+add_subdirectory(usermode/overlay_window)
+add_subdirectory(usermode/process_handle)
+add_subdirectory(usermode/thread_context_hijack)

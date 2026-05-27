@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(usermode_thread_context_hijack LANGUAGES CXX)
+
+add_executable(fpl_thread_context_game src/game.cpp)
+target_compile_features(fpl_thread_context_game PRIVATE cxx_std_17)
+target_compile_definitions(fpl_thread_context_game PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_thread_context_game PROPERTIES OUTPUT_NAME game)
+
+add_executable(fpl_thread_context_hijacker src/hijacker.cpp)
+target_compile_features(fpl_thread_context_hijacker PRIVATE cxx_std_17)
+target_compile_definitions(fpl_thread_context_hijacker PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_thread_context_hijacker PROPERTIES OUTPUT_NAME hijacker)

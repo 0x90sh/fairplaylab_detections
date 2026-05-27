@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(usermode_code_injection LANGUAGES CXX)
+
+add_executable(fpl_code_injection_game src/game.cpp)
+target_compile_features(fpl_code_injection_game PRIVATE cxx_std_17)
+target_compile_definitions(fpl_code_injection_game PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_code_injection_game PROPERTIES OUTPUT_NAME game)
+
+add_library(fpl_code_injection_payload SHARED src/payload.cpp)
+target_compile_features(fpl_code_injection_payload PRIVATE cxx_std_17)
+target_compile_definitions(fpl_code_injection_payload PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_code_injection_payload PROPERTIES OUTPUT_NAME payload)
+
+add_executable(fpl_code_injection_load_library src/load_library_loader.cpp)
+target_compile_features(fpl_code_injection_load_library PRIVATE cxx_std_17)
+target_compile_definitions(fpl_code_injection_load_library PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_code_injection_load_library PROPERTIES OUTPUT_NAME load_library_loader)
+
+add_executable(fpl_code_injection_private_thread src/private_thread_loader.cpp)
+target_compile_features(fpl_code_injection_private_thread PRIVATE cxx_std_17)
+target_compile_definitions(fpl_code_injection_private_thread PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_code_injection_private_thread PROPERTIES OUTPUT_NAME private_thread_loader)

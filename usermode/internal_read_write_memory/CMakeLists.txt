@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(usermode_internal_read_write_memory LANGUAGES CXX)
+
+add_executable(fpl_internal_memory_game src/game.cpp)
+target_compile_features(fpl_internal_memory_game PRIVATE cxx_std_17)
+target_compile_definitions(fpl_internal_memory_game PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_internal_memory_game PROPERTIES ENABLE_EXPORTS ON OUTPUT_NAME game)
+
+add_library(fpl_internal_memory_cheat SHARED src/cheat.cpp)
+target_compile_features(fpl_internal_memory_cheat PRIVATE cxx_std_17)
+target_compile_definitions(fpl_internal_memory_cheat PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_internal_memory_cheat PROPERTIES OUTPUT_NAME cheat)
+
+add_executable(fpl_internal_memory_loader src/loader.cpp)
+target_compile_features(fpl_internal_memory_loader PRIVATE cxx_std_17)
+target_compile_definitions(fpl_internal_memory_loader PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+set_target_properties(fpl_internal_memory_loader PROPERTIES OUTPUT_NAME loader)

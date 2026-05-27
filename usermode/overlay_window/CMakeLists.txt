@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(usermode_overlay_window LANGUAGES CXX)
+
+add_executable(fpl_overlay_cheat src/cheat.cpp)
+target_compile_features(fpl_overlay_cheat PRIVATE cxx_std_17)
+target_compile_definitions(fpl_overlay_cheat PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_link_libraries(fpl_overlay_cheat PRIVATE user32 gdi32)
+set_target_properties(fpl_overlay_cheat PROPERTIES OUTPUT_NAME cheat)
+
+add_executable(fpl_overlay_anticheat src/anticheat.cpp)
+target_compile_features(fpl_overlay_anticheat PRIVATE cxx_std_17)
+target_compile_definitions(fpl_overlay_anticheat PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_link_libraries(fpl_overlay_anticheat PRIVATE user32)
+set_target_properties(fpl_overlay_anticheat PROPERTIES OUTPUT_NAME anticheat)
