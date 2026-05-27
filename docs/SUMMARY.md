@@ -1,15 +1,14 @@
 # Table of contents
 
-* [FairplayLab Detections](README.md)
-* [Welcome](docs/README.md)
-  * [Table of contents](docs/summary.md)
-  * [basics](docs/basics/README.md)
-    * [AntiCheat 101](docs/basics/anticheat-101.md)
-    * [Cheating 101](docs/basics/quickstart.md)
-  * [usermode](docs/usermode/README.md)
-    * [usermode:ext\_rw\_process\_mem](docs/usermode/usermode-ext_rw_process_mem.md)
-    * [usermode:overlay](docs/usermode/usermode-overlay.md)
-    * [usermode:process\_handle](docs/usermode/usermode-process_handle.md)
-* [External Memory Access Detection Demo](usermode-ext_rw_process_mem.md)
-* [Overlay Window Detection Demo](usermode-overlay.md)
-* [Handle Detection Demo](usermode-process_handle.md)
+* [Welcome](README.md)
+
+## Basics
+
+* [Cheating 101](basics/quickstart.md)
+* [AntiCheat 101](basics/anticheat-101.md)
+
+## Usermode
+
+* [usermode:process\_handle](usermode/usermode-process_handle.md)
+* [usermode:overlay](usermode/usermode-overlay.md)
+* [usermode:ext\_rw\_process\_mem](usermode/usermode-ext_rw_process_mem.md)
