@@ -2,7 +2,7 @@
 description: Detecting external read and write process memory attempts.
 ---
 
-# external\_read\_write\_process\_memory
+# External Memory Access
 
 **Cheat**
 

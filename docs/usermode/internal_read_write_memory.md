@@ -2,7 +2,7 @@
 description: Internal read and write memory detection from usermode.
 ---
 
-# internal\_read\_write\_memory
+# Internal Memory Access
 
 **Cheat**
 

@@ -2,7 +2,7 @@
 description: Cheat overlay detection and bypass.
 ---
 
-# overlay\_window
+# Overlay Windows
 
 **Cheat**
 

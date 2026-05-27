@@ -9,9 +9,9 @@
 
 ## Usermode
 
-* [code\_injection](usermode/code_injection.md)
-* [process\_handle](usermode/process_handle.md)
-* [overlay\_window](usermode/overlay_window.md)
-* [internal\_read\_write\_memory](usermode/internal_read_write_memory.md)
-* [external\_read\_write\_process\_memory](usermode/external_read_write_process_memory.md)
-* [thread\_context\_hijack](usermode/thread_context_hijack.md)
+* [Code Injection](usermode/code_injection.md)
+* [Process Handles](usermode/process_handle.md)
+* [Overlay Windows](usermode/overlay_window.md)
+* [Internal Memory Access](usermode/internal_read_write_memory.md)
+* [External Memory Access](usermode/external_read_write_process_memory.md)
+* [Thread Context Hijacking](usermode/thread_context_hijack.md)
