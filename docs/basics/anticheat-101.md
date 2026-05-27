@@ -4,7 +4,9 @@ icon: shield-keyhole
 
 # AntiCheat 101
 
-## Fuck fest anticheat (sorry im frustrated cheating is much easier)
+## The Defender's Problem
+
+Cheating is usually easier than defending at scale.
 
 Anticheat systems aim to maintain a fair and enjoyable gaming environment by detecting and preventing unauthorized advantages without disrupting legitimate players. At their core, these systems balance proactive and reactive measures, such as code integrity checks, memory scanning, and behavior analysis, against the risk of false positives that could frustrate honest users. Because a game’s longterm revenue depends on player satisfaction, anticheat strategies prioritize minimal performance impact and seamless updates, ensuring security features do not degrade the user experience.&#x20;
 
@@ -20,9 +22,11 @@ Effective punishments are designed to deter repeat offenses and uphold a positiv
 
 <figure><img src="../.gitbook/assets/head-anti-cheat-analyst-at-riot-games-shares-ban-numbers-v0-1e9vewrfouce1.webp" alt=""><figcaption><p><a href="https://x.com/deteccphilippe/status/1878950002632053203">https://x.com/deteccphilippe/status/1878950002632053203</a></p></figcaption></figure>
 
-#### Technical possibilites and limitations
+#### Technical possibilities and limitations
 
-User‐mode anticheat tools operate entirely in the same privilege context as the game process, enabling techniques like inmemory scanning, API hooking, and behavioral analysis without requiring elevated rights. They can verify game file integrity, monitor suspicious function calls, and detect known cheat signatures by inspecting process memory or hooking graphics and input APIs. However, because they lack kernel level privileges, usermode solutions can be bypassed by more sophisticated attacks: for example, a cheat running in kernel mode can disable or tamper with usermode hooks, hide malicious modules from process listings, or use DMA to read and write memory without triggering usermode checks. In addition, performance considerations often limit how aggressively usermode tools can scan memory or run heuristics, risking both missed detections and false positives if patterns are too broad or too narrow.
+Usermode anticheat runs in roughly the same world as the game. That makes it easier to ship, easier to update, and less invasive than a driver, but the trust boundary is thin. It can scan process memory, verify game files, watch loaded modules, inspect handles, validate important code paths, hook selected APIs, and look for suspicious behavior around graphics, input, overlays, and game state. Those signals are useful, especially against cheap cheats and sloppy loaders.
+
+The limitation is that usermode is not above the attacker. Internal cheats can read normal game memory with direct pointers. Kernel cheats can tamper with usermode hooks, hide activity from normal process views, or patch the anticheat itself. DMA hardware can read and write memory without going through the usermode APIs the anticheat is watching. Even when a signal exists, scanning too aggressively can hurt performance, create false positives, or annoy legitimate players. Good usermode detection is usually a layered signal system, not one magic check.
 
 Simple usermode hook:
 
@@ -74,7 +78,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
 }
 ```
 
-Kernelmode anticheat drivers gain higher privileges, allowing them to intercept system calls, monitor all processes, and enforce memory protections at a lower level. This expanded access can prevent many usermode workarounds by validating code pages, blocking unauthorized code injections, or even disabling untrusted drivers before they load. Yet running in kernel space carries significant privacy and security implications. To detect cheats effectively, kernelmode components may need to read large portions of RAM, inspect network buffers, or log user input events, actions that can inadvertently capture sensitive information like passwords, personal files, or other applications’ memory contents. Because kernel drivers run with elevated rights, any flaw or backdoor can be exploited by malware to compromise the entire system. Consequently, anticheat designers must balance detection efficacy against strict data‐minimization practices, ensure transparent handling of collected data, and adhere to privacy regulations (e.g., GDPR), lest they expose users to undue risk.
+Kernelmode anticheat drivers move the defender closer to the operating system. They can observe process and thread activity from a stronger position, inspect handles across processes, validate memory access, watch image loads, block some injections earlier, and make usermode tampering harder. This helps against cheats that simply outprivilege the game process.
+
+That power comes with a real cost. A kernel driver is part of the trusted computing base. A bug can crash the machine. A security flaw can become a full system compromise. A careless data collection design can expose sensitive memory, input, files, network data, or other applications. Kernelmode anticheat should be built around strict data minimization, clear boundaries, careful telemetry, and privacy rules like GDPR. The goal is not to collect everything. The goal is to collect the smallest amount of high quality evidence needed to make a fair decision.
+
+So the tradeoff is not just usermode versus kernelmode. It is detection strength, player trust, system stability, privacy, performance, and false positive risk all fighting each other. That is why anticheat work is messy. Cheaters only need one working gap. Defenders need something accurate enough to act on without breaking the game or the user machine.
 
 Simple kmd hook example:
 
