@@ -1,0 +1,28 @@
+#pragma once
+
+#ifdef _KERNEL_MODE
+#include <ntddk.h>
+#else
+#include <windows.h>
+#include <winioctl.h>
+#endif
+
+#define FPL_INVENTORY_DEVICE_TYPE 0x8003
+
+#define IOCTL_FPL_INVENTORY_QUERY CTL_CODE(FPL_INVENTORY_DEVICE_TYPE, 0x801, METHOD_BUFFERED, FILE_READ_DATA)
+
+#define FPL_INVENTORY_MODULE_CAPACITY 128
+#define FPL_INVENTORY_PATH_CHARS 180
+
+typedef struct _FPL_INVENTORY_MODULE {
+    ULONGLONG ImageBase;
+    ULONG ImageSize;
+    ULONG Flags;
+    WCHAR Path[FPL_INVENTORY_PATH_CHARS];
+} FPL_INVENTORY_MODULE;
+
+typedef struct _FPL_INVENTORY_BATCH {
+    ULONG Count;
+    ULONG Truncated;
+    FPL_INVENTORY_MODULE Modules[FPL_INVENTORY_MODULE_CAPACITY];
+} FPL_INVENTORY_BATCH;

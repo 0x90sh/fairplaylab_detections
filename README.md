@@ -10,25 +10,31 @@ https://bible.fairplaylab.org/
 
 - `docs/` contains the GitBook source
 - `docs/usermode/` contains usermode detection writeups
+- `docs/kernel/` contains kernel mode detection writeups
 - `usermode/` contains runnable usermode demos
+- `kernel/` contains kernel driver PoCs and usermode clients
 - `usermode/code_injection/` shows dll injection and private executable thread signals
 - `usermode/external_read_write_process_memory/` shows external process memory reads and writes
 - `usermode/internal_read_write_memory/` shows internal memory reads, writes, patches, and usermode checks
 - `usermode/overlay_window/` shows overlay window detection
 - `usermode/process_handle/` shows process handle detection and handle hijacking
 - `usermode/thread_context_hijack/` shows hijacking an existing thread context
+- `kernel/process_handle_callbacks/` shows process and thread handle protection with `ObRegisterCallbacks`
+- `kernel/process_image_thread_monitor/` shows process, image, and thread callback telemetry
+- `kernel/driver_inventory/` shows loaded kernel module inventory
+- `kernel/communication_surface/` shows a safe driver communication surface and dispatch ownership checks
 
 Later categories should live next to `usermode/` with the same style, for example `kernel/`, `hypervisor/`, and `dma/`.
 
 Each example uses the same folder shape:
 
 ```text
-usermode/detection_name/
+category/detection_name/
+  client/
+  driver/
   CMakeLists.txt
   readme.md
-  assets/
   bin/windows-x64/
-  src/
 ```
 
 ## build

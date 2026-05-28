@@ -1,0 +1,40 @@
+#pragma once
+
+#ifdef _KERNEL_MODE
+#include <ntddk.h>
+#else
+#include <windows.h>
+#include <winioctl.h>
+#endif
+
+#define FPL_COMM_DEVICE_TYPE 0x8004
+
+#define IOCTL_FPL_COMM_PING CTL_CODE(FPL_COMM_DEVICE_TYPE, 0x801, METHOD_BUFFERED, FILE_READ_DATA | FILE_WRITE_DATA)
+#define IOCTL_FPL_COMM_GET_AUDIT CTL_CODE(FPL_COMM_DEVICE_TYPE, 0x802, METHOD_BUFFERED, FILE_READ_DATA)
+#define IOCTL_FPL_COMM_VALIDATE_SELF CTL_CODE(FPL_COMM_DEVICE_TYPE, 0x803, METHOD_BUFFERED, FILE_READ_DATA)
+
+#define FPL_COMM_AUDIT_CAPACITY 64
+#define FPL_COMM_TEXT_CHARS 64
+
+typedef struct _FPL_COMM_PING {
+    ULONG ClientPid;
+    ULONG Nonce;
+    WCHAR Text[FPL_COMM_TEXT_CHARS];
+} FPL_COMM_PING;
+
+typedef struct _FPL_COMM_AUDIT_EVENT {
+    ULONG ClientPid;
+    ULONG IoControlCode;
+    ULONG InputSize;
+    ULONG OutputSize;
+} FPL_COMM_AUDIT_EVENT;
+
+typedef struct _FPL_COMM_AUDIT_BATCH {
+    ULONG Count;
+    FPL_COMM_AUDIT_EVENT Events[FPL_COMM_AUDIT_CAPACITY];
+} FPL_COMM_AUDIT_BATCH;
+
+typedef struct _FPL_COMM_SELF_CHECK {
+    ULONG MajorFunctionCount;
+    ULONG OutsideImageCount;
+} FPL_COMM_SELF_CHECK;

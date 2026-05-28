@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(process_image_thread_monitor_client LANGUAGES CXX)
+
+add_executable(fpl_process_image_thread_monitor_client src/main.cpp)
+target_compile_features(fpl_process_image_thread_monitor_client PRIVATE cxx_std_17)
+target_compile_definitions(fpl_process_image_thread_monitor_client PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_include_directories(fpl_process_image_thread_monitor_client PRIVATE ../../_shared)
+set_target_properties(fpl_process_image_thread_monitor_client PROPERTIES OUTPUT_NAME process_image_thread_monitor_client)
